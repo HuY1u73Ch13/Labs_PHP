@@ -1,0 +1,100 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h3>Signup for New Account</h3>
+    <label>User name </label><br>
+    <input type="text" name="username" required><br>
+
+    <label>User Email * </label><br>
+    <input type="text" name="useremail" required><br>
+
+    <select name="choices" id="choices">
+        <option value="option1">Mr1.</option>
+        <option value="option2">Mrs.</option>
+        <option value="option3">Miss</option>
+        <option value="option3">Ms</option>
+    </select>
+
+    <label>Full name * </label>
+    <input type="text" name="username" required><br>
+
+    <h3>Company detail</h3>
+
+    <p style="color: #CCCCCC;">Provide detail about your company</p>
+    
+    <label>Company name </label><br>
+    <input type="text" name="companyname" required><br>
+
+    <input type="checkbox" name="option1" value="Option 1">
+    <label>I am agree with registration</label><br>
+
+    <input type="submit" name="create" value="Regiter"><br>
+
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h3>Sign Up for a New Account</h3>
+    <form id="signupForm">
+        <label for="username">Username *</label><br>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="useremail">User Email *</label><br>
+        <input type="email" id="useremail" name="useremail" required><br>
+
+        <label for="choices">Title</label><br>
+        <select name="choices" id="choices">
+            <option value="Mr.">Mr.</option>
+            <option value="Mrs.">Mrs.</option>
+            <option value="Miss">Miss</option>
+            <option value="Ms">Ms</option>
+        </select><br>
+
+        <label for="fullname">Full Name *</label><br>
+        <input type="text" id="fullname" name="fullname" required><br>
+
+        <h3>Company Details</h3>
+
+        <h5 style="color: #CCCCCC;">Provide details about your company</h5>
+        
+        <label for="companyname">Company Name *</label><br>
+        <input type="text" id="companyname" name="companyname" required><br>
+
+        <input type="checkbox" id="agreement" name="agreement" value="agree" required>
+        <label for="agreement">I agree with the registration</label><br>
+
+        <input type="submit" value="Register"><br>
+    </form>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            var form = event.target;
+            var username = form.username.value.trim();
+            var useremail = form.useremail.value.trim();
+            var fullname = form.fullname.value.trim();
+            var companyname = form.companyname.value.trim();
+            var agreement = form.agreement.checked;
+
+            if (!username || !useremail || !fullname || !companyname || !agreement) {
+                event.preventDefault();
+                alert("All fields are required and the agreement checkbox must be checked.");
+            }
+        });
+    </script>
+</body>
+</html>

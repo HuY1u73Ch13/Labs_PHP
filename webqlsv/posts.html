@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Posts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Posts</h1>
+        <div>
+            <input type="text" id="search" placeholder="Search posts...">
+            <button id="searchBtn">Search</button>
+        </div>
+        <div id="posts">
+            <!-- Posts will be loaded here dynamically -->
+        </div>
+        <div id="adminActions" style="display: none;">
+            <!-- Only visible to teachers -->
+            <button id="addUserBtn">Add User</button>
+            <button id="editUserBtn">Edit User</button>
+            <button id="deleteUserBtn">Delete User</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

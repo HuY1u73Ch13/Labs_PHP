@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Registration</title>
+</head>
+<body>
+    <form action="registration.php" method="get">
+        <h1>Registration Form</h1>
+        <p>Fill up the form with correct values.</p>
+        <label>User name: </label>
+        <input type="text" name="username" required><br>
+
+        <label>Password: </label>
+        <input type="password" name="password" required><br>
+        
+        <label>First Name: </label>
+        <input type="text" name="firstname" required><br>
+        
+        <label>Last Name: </label>
+        <input type="text" name="lastname" required><br>
+
+        <input type="radio" name="gender" value="male">
+        <label>Male</label>
+        
+        <input type="radio" name="gender" value="female">
+        <label>Female</label>
+        
+        <input type="radio" name="gender" value="other">
+        <label>Other</label><br>
+
+        <label>DOB: </label><br>
+        <input type="date" name="birthday"><br>
+
+        <input type="checkbox" name="option1" value="Option 1">
+        <label>Agree to Terms of Services</label><br>
+
+        <input type="submit" name="create" value="Submit"><br>
+    </form>
+</body>
+</html>
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <form id="login-form">
+            <fieldset>
+                <legend>Login</legend>
+                <div>
+                    <label for="login-username">Username</label>
+                    <input type="text" name="username" id="login-username" required>
+                </div>
+                <div>
+                    <label for="login-password">Password</label>
+                    <input type="password" name="password" id="login-password" required>
+                </div>
+                <div>
+                    <input type="checkbox" name="remember" id="login-remember">
+                    <label for="login-remember">Remember me</label>
+                </div>
+                <input type="submit" value="Log In">
+            </fieldset>
+        </form>
+        <form id="signup-form">
+            <fieldset>
+                <legend>Signup for New Account?</legend>
+                <div>
+                    <label for="signup-username">User Name</label>
+                    <input type="text" name="username" id="signup-username" required>
+                </div>
+                <div>
+                    <label for="signup-email">User Email *</label>
+                    <input type="email" name="email" id="signup-email" required>
+                </div>
+                <div>
+                    <label for="signup-title">Select Title</label>
+                    <select name="title" id="signup-title" required>
+                        <option value="Mr.">Mr.</option>
+                        <option value="Mrs.">Mrs.</option>
+                        <option value="Ms.">Ms.</option>
+                        <option value="Dr.">Dr.</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="signup-fullname">Full Name *</label>
+                    <input type="text" name="fullname" id="signup-fullname" required>
+                </div>
+                <div>
+                    <label for="signup-password">Password</label>
+                    <input type="password" name="password" id="signup-password" required>
+                </div>
+                <div class="company-details">
+                    <label for="company-name">Company Name</label>
+                    <input type="text" name="company" id="company-name">
+                </div>
+                <div>
+                    <input type="checkbox" name="agree" id="signup-agree" required>
+                    <label for="signup-agree">I agree with registration</label>
+                </div>
+                <input type="submit" value="Register">
+            </fieldset>
+        </form>
+        <div id="signup-message"></div>
+    </div>
+    <script>
+    document.getElementById('login-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = document.getElementById('login-username').value;
+        var password = document.getElementById('login-password').value;
+        var remember = document.getElementById('login-remember').checked;
+
+        // Check password length
+        if (password.length < 8) {
+            alert("Password must be at least 8 characters long");
+            return;
+        }
+
+        var formData = new FormData();
+        formData.append('username', username);
+        formData.append('password', password);
+        formData.append('remember', remember);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'login.php', true);
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.onload = function () {
+            var response = JSON.parse(this.responseText);
+            if (response.success) {
+                alert("Login successful!");
+                // Redirect based on response
+                if (response.redirect) {
+                    window.location.href = response.redirect;
+                }
+                // Optionally, you can perform other actions here upon successful login
+            } else {
+                alert(response.message);
+            }
+        };
+        xhr.send(formData);
+    });
+    
+    document.getElementById('signup-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        var username = document.getElementById('signup-username').value;
+        var email = document.getElementById('signup-email').value;
+        var title = document.getElementById('signup-title').value;
+        var fullname = document.getElementById('signup-fullname').value;
+        var password = document.getElementById('signup-password').value;
+        var company = document.getElementById('company-name').value;
+        var agree = document.getElementById('signup-agree').checked;
+
+        var formData = new FormData();
+        formData.append('username', username);
+        formData.append('email', email);
+        formData.append('title', title);
+        formData.append('fullname', fullname);
+        formData.append('password', password);
+        formData.append('company', company);
+        formData.append('agree', agree);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'signup.php', true);
+        xhr.setRequestHeader('Accept', 'application/json');
+        xhr.onload = function () {
+            var response = JSON.parse(this.responseText);
+            var messageDiv = document.getElementById('signup-message');
+            if (response.success) {
+                messageDiv.style.color = 'green';
+                messageDiv.textContent = "Registration successful!";
+            } else {
+                messageDiv.style.color = 'red';
+                messageDiv.textContent = response.message;
+            }
+        };
+        xhr.send(formData);
+    });
+    </script>
+</body>
+</html>
